@@ -28,6 +28,16 @@ class PHPSwiftTests: XCTestCase {
         XCTAssertEqual(self.variable, 0)
         XCTAssertTrue(self.variable == 0)
         XCTAssertTrue(0 == self.variable)
+        XCTAssertTrue(self.variable != 1)
+        XCTAssertTrue(1 != self.variable)
+    }
+    func testFloat() {
+        self.variable = 0.001
+        XCTAssertEqual(self.variable, 0.001)
+        XCTAssertTrue(self.variable == 0.001)
+        XCTAssertTrue(0.001 == self.variable)
+        XCTAssertTrue(self.variable != 0.1)
+        XCTAssertTrue(0.1 != self.variable)
     }
     func testString() {
         self.variable = "PHP"

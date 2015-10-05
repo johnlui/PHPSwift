@@ -37,6 +37,9 @@ public struct PHP$ {
     init(int: IntegerLiteralType) {
         self.data = int
     }
+    init(float: FloatLiteralType) {
+        self.data = float
+    }
     init(string: StringLiteralType) {
         self.data = string
     }
@@ -57,6 +60,11 @@ public struct PHP$ {
 extension PHP$: IntegerLiteralConvertible {
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(int: value)
+    }
+}
+extension PHP$: FloatLiteralConvertible {
+    public init(floatLiteral value: FloatLiteralType) {
+        self.init(float: value)
     }
 }
 extension PHP$: StringLiteralConvertible {
