@@ -35,6 +35,20 @@ class PHPSwiftTests: XCTestCase {
         XCTAssertTrue(self.variable == "PHP")
         XCTAssertTrue("PHP" == self.variable)
     }
+    func testNil() {
+        self.variable = nil
+        XCTAssertEqual(self.variable, nil)
+        XCTAssertFalse(self.variable != nil)
+        XCTAssertFalse(nil != self.variable)
+    }
+    func testBool() {
+        self.variable = true
+        XCTAssertEqual(self.variable, true)
+        XCTAssertTrue(self.variable == true)
+        XCTAssertTrue(true == self.variable)
+        XCTAssertTrue(self.variable != false)
+        XCTAssertTrue(false != self.variable)
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

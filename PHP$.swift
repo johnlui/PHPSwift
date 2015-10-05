@@ -12,7 +12,16 @@ public struct PHP$ {
     var data: AnyObject!
     var value: String {
         get {
-            return self.data.description
+            // Int, Bool
+            if let _ = self.data as? Int {
+                return self.data.description
+            }
+            // String
+            if let _ = self.data as? String {
+                return self.data.description
+            }
+            print("==: \(self.data)")
+            return ""
         }
     }
     init(int: IntegerLiteralType) {
@@ -20,6 +29,12 @@ public struct PHP$ {
     }
     init(string: StringLiteralType) {
         self.data = string
+    }
+    init(nilValue: ()) {
+        self.data = nil
+    }
+    init(bool: BooleanLiteralType) {
+        self.data = bool
     }
 }
 
@@ -39,6 +54,16 @@ extension PHP$: StringLiteralConvertible {
     }
     public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
         self.init(string: value)
+    }
+}
+extension PHP$: NilLiteralConvertible {
+    public init(nilLiteral: ()) {
+        self.init(nilValue: nilLiteral)
+    }
+}
+extension PHP$: BooleanLiteralConvertible {
+    public init(booleanLiteral value: BooleanLiteralType) {
+        self.init(bool: value)
     }
 }
 
