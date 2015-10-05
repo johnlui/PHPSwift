@@ -49,6 +49,25 @@ class PHPSwiftTests: XCTestCase {
         XCTAssertTrue(self.variable != false)
         XCTAssertTrue(false != self.variable)
     }
+    func testArray() {
+        self.variable = ["PHP", "Swift"]
+        XCTAssertEqual(self.variable, ["PHP", "Swift"])
+        XCTAssertTrue(self.variable == ["PHP", "Swift"])
+        XCTAssertTrue(["PHP", "Swift"] == self.variable)
+        XCTAssertFalse(self.variable == ["Swift", "PHP"])
+        XCTAssertFalse(["Swift", "PHP"] == self.variable)
+    }
+    func testDictionary() {
+        let dic: PHP$ = ["test": 100]
+        self.variable = ["PHP": 10086, "Swift": "Hello", "dic": dic]
+        XCTAssertEqual(self.variable, ["PHP": 10086, "Swift": "Hello", "dic": dic])
+        XCTAssertTrue(self.variable == ["PHP": 10086, "Swift": "Hello", "dic": dic])
+        XCTAssertTrue(["PHP": 10086, "Swift": "Hello", "dic": dic] == self.variable)
+        XCTAssertTrue(self.variable == ["dic": dic, "Swift": "Hello", "PHP": 10086])
+        XCTAssertTrue(["dic": dic, "Swift": "Hello", "PHP": 10086] == self.variable)
+        XCTAssertFalse(self.variable == ["dic": dic, "PHP": 10086, "Swift": "Hello", "add": true])
+        XCTAssertFalse(["dic": dic, "PHP": 10086, "Swift": "Hello", "add": true] == self.variable)
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

@@ -20,6 +20,16 @@ public struct PHP$ {
             if let _ = self.data as? String {
                 return self.data.description
             }
+            // Array
+            if let _ = self.data as? [PHP$] {
+                print("array: \(self.data)")
+                return self.data.description
+            }
+            // Dictionary
+            if let _ = self.data as? [String: PHP$] {
+                print("dictionary: \(self.data)")
+                return self.data.description
+            }
             print("==: \(self.data)")
             return ""
         }
@@ -35,6 +45,12 @@ public struct PHP$ {
     }
     init(bool: BooleanLiteralType) {
         self.data = bool
+    }
+    init(array: [PHP$]) {
+        self.data = array.description
+    }
+    init(dic: [String: PHP$]) {
+        self.data = dic.description
     }
 }
 
@@ -64,6 +80,20 @@ extension PHP$: NilLiteralConvertible {
 extension PHP$: BooleanLiteralConvertible {
     public init(booleanLiteral value: BooleanLiteralType) {
         self.init(bool: value)
+    }
+}
+extension PHP$: ArrayLiteralConvertible {
+    public init(arrayLiteral elements: PHP$...) {
+        self.init(array: elements)
+    }
+}
+extension PHP$: DictionaryLiteralConvertible {
+    public init(dictionaryLiteral elements: (String, PHP$)...) {
+        self.init(dic: elements.reduce([String : PHP$]()){(dictionary: [String : PHP$], element:(String, PHP$)) -> [String : PHP$] in
+            var d = dictionary
+            d[element.0] = element.1
+            return d
+            })
     }
 }
 
