@@ -9,51 +9,77 @@
 import Foundation
 
 public struct PHP$ {
-    var data: AnyObject!
+    private var data: AnyObject!
+    private var array: [PHP$]!
+    private var dictionary: [String: PHP$]!
     var value: String {
         get {
-            // Int, Bool
-            if let _ = self.data as? Int {
-                return self.data.description
+            // Float, Int, Bool
+            if let a = self.getData() as? Float {
+                print("float: \(a)")
+                return a.description
             }
             // String
-            if let _ = self.data as? String {
-                return self.data.description
+            if let a = self.getData() as? String {
+                print("string: \(a)")
+                return a
             }
             // Array
-            if let _ = self.data as? [PHP$] {
-                print("array: \(self.data)")
-                return self.data.description
+            if let a = self.getData() as? [PHP$] {
+                print("array: \(a)")
+                a.forEach({ (i) -> () in
+                    print(i)
+                })
+                return a.description
             }
             // Dictionary
-            if let _ = self.data as? [String: PHP$] {
-                print("dictionary: \(self.data)")
-                return self.data.description
+            if let a = self.getData() as? [String: PHP$] {
+                print("dictionary: \(a)")
+                return a.description
             }
             print("==: \(self.data)")
             return ""
         }
     }
+    func getData() -> Any! {
+        if let _ = self.data {
+            return self.data
+        } else if let _ = self.array {
+            return self.array
+        } else if let _ = self.dictionary {
+            return self.dictionary
+        }
+        return nil
+    }
+    init(data: Any!) {
+        if let a = data as? AnyObject {
+            self.data = a
+        } else if let a = data as? [PHP$] {
+            self.array = a
+        } else if let a = data as? [String: PHP$] {
+            self.dictionary = a
+        }
+    }
     init(int: IntegerLiteralType) {
-        self.data = int
+        self.init(data: int)
     }
     init(float: FloatLiteralType) {
-        self.data = float
+        self.init(data: float)
     }
     init(string: StringLiteralType) {
-        self.data = string
+        self.init(data: string)
     }
     init(nilValue: ()) {
-        self.data = nil
+        self.init(data: nil)
     }
     init(bool: BooleanLiteralType) {
-        self.data = bool
+        self.init(data: bool)
     }
     init(array: [PHP$]) {
-        self.data = array.description
+        self.init(data: array)
     }
-    init(dic: [String: PHP$]) {
-        self.data = dic.description
+    init(dictionary: [String: PHP$]) {
+        self.init(data: dictionary)
     }
 }
 
@@ -97,7 +123,7 @@ extension PHP$: ArrayLiteralConvertible {
 }
 extension PHP$: DictionaryLiteralConvertible {
     public init(dictionaryLiteral elements: (String, PHP$)...) {
-        self.init(dic: elements.reduce([String : PHP$]()){(dictionary: [String : PHP$], element:(String, PHP$)) -> [String : PHP$] in
+        self.init(dictionary: elements.reduce([String : PHP$]()){(dictionary: [String : PHP$], element:(String, PHP$)) -> [String : PHP$] in
             var d = dictionary
             d[element.0] = element.1
             return d

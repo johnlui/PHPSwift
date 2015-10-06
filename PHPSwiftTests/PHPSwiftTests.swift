@@ -77,13 +77,5 @@ class PHPSwiftTests: XCTestCase {
         XCTAssertTrue(["dic": dic, "Swift": "Hello", "PHP": 10086] == self.variable)
         XCTAssertFalse(self.variable == ["dic": dic, "PHP": 10086, "Swift": "Hello", "add": true])
         XCTAssertFalse(["dic": dic, "PHP": 10086, "Swift": "Hello", "add": true] == self.variable)
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+    }    
 }
