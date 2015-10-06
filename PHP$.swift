@@ -7,11 +7,30 @@
 //
 
 import Foundation
+enum PHP$Type {
+    case Float, String, Array, Dictionary, Unknown
+}
 
 public struct PHP$ {
     private var data: AnyObject!
     private var array: [PHP$]!
     private var dictionary: [String: PHP$]!
+    private var type: PHP$Type {
+        get {
+            switch self.getData() {
+            case _ as Float:
+                return .Float
+            case _ as String:
+                return .String
+            case _ as [PHP$]:
+                return .Array
+            case _ as [String: PHP$]:
+                return .Dictionary
+            default:
+                return .Unknown
+            }
+        }
+    }
     var value: String {
         get {
             // Float, Int, Bool
@@ -35,7 +54,7 @@ public struct PHP$ {
             // Dictionary
             if let a = self.getData() as? [String: PHP$] {
                 print("dictionary: \(a)")
-                return a.description
+                return a.sort({ $0.0 < $1.0 }).description
             }
             print("==: \(self.data)")
             return ""
@@ -50,6 +69,30 @@ public struct PHP$ {
             return self.dictionary
         }
         return nil
+    }
+    func getFloat() -> Float! {
+        if self.type != .Float {
+            return nil
+        }
+        return self.getData() as! Float
+    }
+    func getString() -> String! {
+        if self.type != .String {
+            return nil
+        }
+        return self.getData() as! String
+    }
+    func getArray() -> [PHP$] {
+        if self.type != .Array {
+            return [PHP$]()
+        }
+        return self.getData() as! [PHP$]
+    }
+    func getDictionary() -> [String: PHP$] {
+        if self.type != .Dictionary {
+            return [String: PHP$]()
+        }
+        return self.getData() as! [String: PHP$]
     }
     init(data: Any!) {
         if let a = data as? AnyObject {
@@ -134,4 +177,87 @@ extension PHP$: DictionaryLiteralConvertible {
 extension PHP$: Equatable {}
 public func ==(lhs: PHP$, rhs: PHP$) -> Bool {
     return lhs.value == rhs.value
+}
+
+extension PHP$: IntegerArithmeticType {
+    public static func addWithOverflow(lhs: PHP$, _ rhs: PHP$) -> (PHP$, overflow: Bool) {
+        return (lhs, false)
+    }
+    public static func subtractWithOverflow(lhs: PHP$, _ rhs: PHP$) -> (PHP$, overflow: Bool) {
+        return (lhs, false)
+    }
+    public static func multiplyWithOverflow(lhs: PHP$, _ rhs: PHP$) -> (PHP$, overflow: Bool) {
+        return (lhs, false)
+    }
+    public static func divideWithOverflow(lhs: PHP$, _ rhs: PHP$) -> (PHP$, overflow: Bool) {
+        return (lhs, false)
+    }
+    public static func remainderWithOverflow(lhs: PHP$, _ rhs: PHP$) -> (PHP$, overflow: Bool) {
+        return (lhs, false)
+    }
+    public func toIntMax() -> IntMax {
+        return INT64_MAX
+    }
+}
+
+public func +(lhs: PHP$, rhs: PHP$) -> PHP$ {
+    switch lhs.type {
+    case .Dictionary:
+        if rhs.type != .Dictionary {
+            return PHP$(string: lhs.value + rhs.value)
+        }
+        return PHP$(dictionary: lhs.getDictionary() + rhs.getDictionary())
+    case .Array:
+        if rhs.type != .Array {
+            return PHP$(string: lhs.value + rhs.value)
+        }
+        return PHP$(array: lhs.getArray() + rhs.getArray())
+    case .String:
+        return PHP$(string: lhs.value + rhs.value)
+    case .Float:
+        if rhs.type != .Float {
+            return PHP$(string: lhs.value + rhs.value)
+        }
+        return PHP$(float: FloatLiteralType(lhs.getFloat() + rhs.getFloat()))
+    case .Unknown:
+        return PHP$(string: lhs.value + rhs.value)
+    }
+}
+public func -(lhs: PHP$, rhs: PHP$) -> PHP$ {
+    return lhs
+}
+public func *(lhs: PHP$, rhs: PHP$) -> PHP$ {
+    return lhs
+}
+public func /(lhs: PHP$, rhs: PHP$) -> PHP$ {
+    return lhs
+}
+public func %(lhs: PHP$, rhs: PHP$) -> PHP$ {
+    return lhs
+}
+
+
+public func <(lhs: PHP$, rhs: PHP$) -> Bool {
+    return true
+}
+public func <=(lhs: PHP$, rhs: PHP$) -> Bool {
+    return true
+}
+public func >(lhs: PHP$, rhs: PHP$) -> Bool {
+    return true
+}
+public func >=(lhs: PHP$, rhs: PHP$) -> Bool {
+    return true
+}
+
+public func +<K,V>(left: Dictionary<K,V>, right: Dictionary<K,V>) -> Dictionary<K,V>
+{
+    var map = Dictionary<K,V>()
+    for (k, v) in left {
+        map[k] = v
+    }
+    for (k, v) in right {
+        map[k] = v
+    }
+    return map
 }

@@ -1,6 +1,6 @@
 //
-//  PHPSwiftTests.swift
-//  PHPSwiftTests
+//  PHPSwiftBaseTests.swift
+//  PHPSwiftBaseTests
 //
 //  Created by 吕文翰 on 15/10/5.
 //  Copyright © 2015年 JohnLui. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import PHPSwift
 
-class PHPSwiftTests: XCTestCase {
+class PHPSwiftBaseTests: XCTestCase {
     
     var variable: PHP$!
     
@@ -18,19 +18,6 @@ class PHPSwiftTests: XCTestCase {
         self.variable = nil
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testInt() {
-        self.variable = 0
-        XCTAssertEqual(self.variable, 0)
-        XCTAssertTrue(self.variable == 0)
-        XCTAssertTrue(0 == self.variable)
-        XCTAssertTrue(self.variable != 1)
-        XCTAssertTrue(1 != self.variable)
-    }
     func testFloat() {
         self.variable = 0.001
         XCTAssertEqual(self.variable, 0.001)

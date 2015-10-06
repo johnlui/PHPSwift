@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C820AA321BC1A90100073239 /* PHP$.swift in Sources */ = {isa = PBXBuildFile; fileRef = C820AA311BC1A90100073239 /* PHP$.swift */; settings = {ASSET_TAGS = (); }; };
+		C875DF211BC4319100BCFA29 /* IntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C875DF201BC4319100BCFA29 /* IntTests.swift */; settings = {ASSET_TAGS = (); }; };
 		C8A722251BC1A849008D49C8 /* PHPSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = C8A722241BC1A849008D49C8 /* PHPSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C8A7222C1BC1A849008D49C8 /* PHPSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A722211BC1A849008D49C8 /* PHPSwift.framework */; settings = {ASSET_TAGS = (); }; };
-		C8A722311BC1A849008D49C8 /* PHPSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A722301BC1A849008D49C8 /* PHPSwiftTests.swift */; };
+		C8A722311BC1A849008D49C8 /* PHPSwiftBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A722301BC1A849008D49C8 /* PHPSwiftBaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,11 +26,12 @@
 
 /* Begin PBXFileReference section */
 		C820AA311BC1A90100073239 /* PHP$.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHP$.swift; sourceTree = SOURCE_ROOT; };
+		C875DF201BC4319100BCFA29 /* IntTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTests.swift; sourceTree = "<group>"; };
 		C8A722211BC1A849008D49C8 /* PHPSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PHPSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A722241BC1A849008D49C8 /* PHPSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHPSwift.h; sourceTree = "<group>"; };
 		C8A722261BC1A849008D49C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A7222B1BC1A849008D49C8 /* PHPSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PHPSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8A722301BC1A849008D49C8 /* PHPSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPSwiftTests.swift; sourceTree = "<group>"; };
+		C8A722301BC1A849008D49C8 /* PHPSwiftBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPSwiftBaseTests.swift; sourceTree = "<group>"; };
 		C8A722321BC1A849008D49C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +85,8 @@
 		C8A7222F1BC1A849008D49C8 /* PHPSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				C8A722301BC1A849008D49C8 /* PHPSwiftTests.swift */,
+				C8A722301BC1A849008D49C8 /* PHPSwiftBaseTests.swift */,
+				C875DF201BC4319100BCFA29 /* IntTests.swift */,
 				C8A722321BC1A849008D49C8 /* Info.plist */,
 			);
 			path = PHPSwiftTests;
@@ -207,7 +210,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8A722311BC1A849008D49C8 /* PHPSwiftTests.swift in Sources */,
+				C8A722311BC1A849008D49C8 /* PHPSwiftBaseTests.swift in Sources */,
+				C875DF211BC4319100BCFA29 /* IntTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
