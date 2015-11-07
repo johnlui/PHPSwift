@@ -12,6 +12,7 @@
 		C8A7222C1BC1A849008D49C8 /* PHPSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A722211BC1A849008D49C8 /* PHPSwift.framework */; };
 		C8A722311BC1A849008D49C8 /* PHPSwiftBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A722301BC1A849008D49C8 /* PHPSwiftBaseTests.swift */; };
 		C8C42EE61BE3D05F00C181F8 /* PHP$.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C42EE51BE3D05F00C181F8 /* PHP$.swift */; };
+		C8C6EC4A1BEDEEEF00A29D9F /* PHPClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6EC491BEDEEEF00A29D9F /* PHPClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		C8A722301BC1A849008D49C8 /* PHPSwiftBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPSwiftBaseTests.swift; sourceTree = "<group>"; };
 		C8A722321BC1A849008D49C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8C42EE51BE3D05F00C181F8 /* PHP$.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PHP$.swift; path = Source/PHP$.swift; sourceTree = SOURCE_ROOT; };
+		C8C6EC491BEDEEEF00A29D9F /* PHPClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PHPClass.swift; path = Source/PHPClass.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				C8A722241BC1A849008D49C8 /* PHPSwift.h */,
 				C8C42EE51BE3D05F00C181F8 /* PHP$.swift */,
+				C8C6EC491BEDEEEF00A29D9F /* PHPClass.swift */,
 				C8A722261BC1A849008D49C8 /* Info.plist */,
 			);
 			path = PHPSwift;
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8C42EE61BE3D05F00C181F8 /* PHP$.swift in Sources */,
+				C8C6EC4A1BEDEEEF00A29D9F /* PHPClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
